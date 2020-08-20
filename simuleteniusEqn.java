@@ -1,3 +1,9 @@
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import static java.lang.String.valueOf;
+import javax.swing.JButton;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -9,6 +15,10 @@
  * @author chaz
  */
 public class simuleteniusEqn extends javax.swing.JFrame {
+
+    private Object b;
+    private Object c;
+    private Object d;
 
     /**
      * Creates new form simuleteniusEqn
@@ -28,23 +38,24 @@ public class simuleteniusEqn extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        B = new javax.swing.JTextField();
+        C = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        y1 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        A = new javax.swing.JTextField();
+        E = new javax.swing.JTextField();
+        y_result = new javax.swing.JTextField();
+        y2 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField9 = new javax.swing.JTextField();
+        D = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        solve = new javax.swing.JButton();
+        clear = new javax.swing.JButton();
+        y_ans = new javax.swing.JLabel();
+        x_ans = new javax.swing.JLabel();
+        F = new javax.swing.JTextField();
+        x_result = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -55,94 +66,155 @@ public class simuleteniusEqn extends javax.swing.JFrame {
         getContentPane().add(jLabel1);
         jLabel1.setBounds(115, 29, 380, 37);
 
-        jLabel2.setText("a1x + b1y = c1 ..........(i)");
+        jLabel2.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        jLabel2.setText("ax + by = c ..........(i)");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(280, 70, 211, 43);
+        jLabel2.setBounds(280, 70, 210, 40);
 
-        jTextField1.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
-        getContentPane().add(jTextField1);
-        jTextField1.setBounds(230, 170, 40, 20);
+        B.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
+        getContentPane().add(B);
+        B.setBounds(230, 160, 50, 30);
 
-        jTextField2.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
-        getContentPane().add(jTextField2);
-        jTextField2.setBounds(310, 170, 40, 25);
+        C.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
+        getContentPane().add(C);
+        C.setBounds(410, 160, 50, 30);
 
-        jLabel4.setText("a2x + b2y = c2...........(ii)");
+        jLabel4.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        jLabel4.setText("dx +ey = f...........(ii)");
         getContentPane().add(jLabel4);
         jLabel4.setBounds(280, 110, 177, 26);
 
-        jLabel5.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel5.setText("y");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(270, 170, 20, 20);
+        y1.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        y1.setText("y      +   =");
+        getContentPane().add(y1);
+        y1.setBounds(300, 160, 80, 30);
 
-        jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel6.setText("x");
-        getContentPane().add(jLabel6);
-        jLabel6.setBounds(180, 170, 10, 20);
-
-        jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel7.setText("+");
+        jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel7.setText("x     +");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(200, 170, 30, 20);
+        jLabel7.setBounds(170, 160, 50, 30);
 
-        jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel8.setText("=");
-        getContentPane().add(jLabel8);
-        jLabel8.setBounds(290, 170, 30, 20);
+        A.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
+        getContentPane().add(A);
+        A.setBounds(110, 160, 50, 30);
 
-        jTextField3.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
-        getContentPane().add(jTextField3);
-        jTextField3.setBounds(140, 170, 40, 25);
+        E.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
+        getContentPane().add(E);
+        E.setBounds(230, 210, 50, 30);
 
-        jTextField4.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
-        getContentPane().add(jTextField4);
-        jTextField4.setBounds(230, 210, 40, 20);
+        y_result.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
+        getContentPane().add(y_result);
+        y_result.setBounds(510, 310, 50, 40);
 
-        jTextField5.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
-        getContentPane().add(jTextField5);
-        jTextField5.setBounds(310, 210, 40, 25);
+        y2.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        y2.setText("y    +    =");
+        getContentPane().add(y2);
+        y2.setBounds(310, 210, 80, 30);
 
-        jLabel9.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel9.setText("y");
-        getContentPane().add(jLabel9);
-        jLabel9.setBounds(270, 210, 20, 20);
-
-        jLabel10.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel10.setText("x");
-        getContentPane().add(jLabel10);
-        jLabel10.setBounds(190, 210, 10, 20);
-
-        jLabel11.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel11.setText("+");
+        jLabel11.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel11.setText("x       +");
         getContentPane().add(jLabel11);
-        jLabel11.setBounds(210, 210, 10, 20);
+        jLabel11.setBounds(167, 210, 54, 30);
 
-        jLabel12.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel12.setText("=");
-        getContentPane().add(jLabel12);
-        jLabel12.setBounds(290, 210, 30, 20);
+        D.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
+        getContentPane().add(D);
+        D.setBounds(110, 210, 50, 30);
 
-        jTextField6.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
-        getContentPane().add(jTextField6);
-        jTextField6.setBounds(140, 210, 40, 25);
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(102, 0, 102));
+        jLabel3.setText("calculator");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(200, 0, 120, 30);
 
-        jTextField7.setBackground(new java.awt.Color(255, 153, 153));
-        jTextField7.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
-        jTextField7.setForeground(new java.awt.Color(255, 102, 102));
-        jTextField7.setText("c");
-        getContentPane().add(jTextField7);
-        jTextField7.setBounds(160, 290, 40, 30);
+        solve.setBackground(new java.awt.Color(51, 255, 153));
+        solve.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        solve.setForeground(new java.awt.Color(51, 102, 0));
+        solve.setText("solve");
+        solve.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                solveActionPerformed(evt);
+            }
+        });
+        getContentPane().add(solve);
+        solve.setBounds(320, 270, 80, 50);
 
-        jTextField9.setBackground(new java.awt.Color(204, 255, 204));
-        jTextField9.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
-        jTextField9.setForeground(new java.awt.Color(0, 255, 0));
-        jTextField9.setText("solve");
-        getContentPane().add(jTextField9);
-        jTextField9.setBounds(290, 270, 80, 50);
+        clear.setBackground(new java.awt.Color(255, 51, 51));
+        clear.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        clear.setText("c");
+        clear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearActionPerformed(evt);
+            }
+        });
+        getContentPane().add(clear);
+        clear.setBounds(330, 360, 60, 30);
+
+        y_ans.setFont(new java.awt.Font("Tahoma", 2, 18)); // NOI18N
+        y_ans.setText("y=");
+        getContentPane().add(y_ans);
+        y_ans.setBounds(450, 310, 50, 30);
+
+        x_ans.setFont(new java.awt.Font("Tahoma", 2, 18)); // NOI18N
+        x_ans.setText("x =");
+        getContentPane().add(x_ans);
+        x_ans.setBounds(450, 260, 50, 30);
+
+        F.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
+        getContentPane().add(F);
+        F.setBounds(410, 210, 50, 30);
+
+        x_result.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
+        getContentPane().add(x_result);
+        x_result.setBounds(510, 255, 50, 40);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    
+    
+   // JButton btnSolve =new JButton("solve"); //i add this button but still yet
+    private void solveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solveActionPerformed
+        // TODO add your handling code here:
+        //why an erros
+     //   btnSolve.addActionListener(new ActionListener() {//added and generate object down hr
+          //  @Override
+          //  public void actionPerformed(ActionEvent e) {
+          //      throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+           // }
+       // });
+        
+        double a1 = Integer.parseInt(A.getText());
+         double b1 = Integer.parseInt(B.getText());
+          double c1 = Integer.parseInt(C.getText());
+           double d1 = Integer.parseInt(D.getText());//why this!
+            double e1 = Integer.parseInt(E.getText());
+             double f1 = Integer.parseInt(F.getText());
+             
+             
+             
+             //fomulae of detaminant to calculate eqn
+             double x1 = ((b1*f1)-(c1-c1*e1))/((b1*d1)-(a1*e1));
+             double y1 = (c1-(a1*x1))/b1;
+             
+             //set x,y_ans
+             x_result.setText(String.valueOf(x1));
+             y_result.setText(String.valueOf(y1));
+             
+  
+    }//GEN-LAST:event_solveActionPerformed
+
+    private void clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearActionPerformed
+        // TODO add your handling code here:
+        //clear button
+        A.setText(null);
+        B.setText(null);
+        C.setText(null);
+        D.setText(null);
+        E.setText(null);
+        F.setText(null);
+         x_result.setText(null);
+         y_result.setText(null);
+    }//GEN-LAST:event_clearActionPerformed
 
     /**
      * @param args the command line arguments
@@ -183,24 +255,30 @@ public class simuleteniusEqn extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField A;
+    private javax.swing.JTextField B;
+    private javax.swing.JTextField C;
+    private javax.swing.JTextField D;
+    private javax.swing.JTextField E;
+    private javax.swing.JTextField F;
+    private javax.swing.JButton clear;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JButton solve;
+    private javax.swing.JLabel x_ans;
+    private javax.swing.JTextField x_result;
+    private javax.swing.JLabel y1;
+    private javax.swing.JLabel y2;
+    private javax.swing.JLabel y_ans;
+    private javax.swing.JTextField y_result;
     // End of variables declaration//GEN-END:variables
+
+   
+
+    
+   
 }
